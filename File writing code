@@ -1,0 +1,21 @@
+import java.io.FileWriter;
+
+// Specify the file path and name
+String filePath = "/path/to/file.txt";
+
+// Specify the data to write to the file
+String data = "Hello, world!";
+
+// Create a FileWriter object
+FileWriter writer = new FileWriter(filePath, true);
+
+// Write the data to the file
+writer.write(data);
+
+// Close the writer to ensure the data is flushed and the file is saved
+writer.close();
+
+
+
+
+
