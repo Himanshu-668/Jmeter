@@ -1,0 +1,20 @@
+String filePath = "/home/apmosys/Desktop/AppdyResponse/AppID.txt";
+String delimiter = ",";
+String value = "";
+String myValue = "";
+try {
+    BufferedReader reader = new BufferedReader(new FileReader(filePath));
+    String line = reader.readLine();
+    while (line != null) {
+        String[] columns = line.split(delimiter);
+        // Extract the desired column value based on the column index (starting from 0)
+        value = columns[0]; // Assumes the first column contains the desired value
+        line = reader.readLine();
+    }
+    reader.close();
+} catch (IOException e) {
+    log.error("Error reading file: " + e.getMessage());
+}
+myValue = value; // Set the myValue variable to the extracted value
+log.info("my value set to: " + myValue);
+vars.put("myValue", myValue);
