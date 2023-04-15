@@ -1,0 +1,29 @@
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.io.FileWriter;
+import java.io.IOException;
+
+String response = prev.getResponseDataAsString();
+String filePath = "/path/to/file.txt";
+
+// Define patterns to match against the response
+Pattern pattern1 = Pattern.compile("<pattern1>(.+?)</pattern1>");
+Pattern pattern2 = Pattern.compile("<pattern2>(.+?)</pattern2>");
+
+// Create matchers to apply the patterns to the response
+Matcher matcher1 = pattern1.matcher(response);
+Matcher matcher2 = pattern2.matcher(response);
+
+// Open the file for writing
+FileWriter writer = new FileWriter(filePath, true);
+
+// Loop through the matches and write them to the file
+while (matcher1.find() && matcher2.find()) {
+  String value1 = matcher1.group(1);
+  String value2 = matcher2.group(1);
+  String line = value1 + "," + value2 + "\n";
+  writer.write(line);
+}
+
+// Close the file
+writer.close();
