@@ -1,0 +1,26 @@
+ If we search using “cps” in jmeter properties file then we will get two properties:
+
+httpclient.socket.http.cps=0
+httpclient.socket.https.cps=0
+Remove “#” to enable the properties
+The first property simulates the speed when you use HTTP method (protocol) and the second property is used to simulate the speed for HTTPS method.
+CPS = RB * 128
+where:
+CPS = Characters per second
+RB = Required Bandwidth that you need to set for the load test. The input value of required bandwidth should be in kbps.
+Example:
+To understand the calculation let’s take an example: If you want to simulate 500 kbps speed for your test then the calculation will be:
+=> cps = 500 x 128
+=> cps = 64000
+
+So, you need to set:
+
+httpclient.socket.http.cps=64000
+
+Hence JMeter will send the data with the speed of 64000 characters per second and you will achieve 500kbps network bandwidth.
+To set the speed in the non-GUI mode, use the below command:
+
+jmeter -Jhttpclient.socket.http.cps=<calculated value> -n -t <path of .jmx> -l <path of .jtl>
+
+Check the testing environment network bandwidth (where the test to be conducted) before simulating the speed. Because JMeter can only simulate the bandwidth equal to or less than the testing environment network bandwidth.
+Use RB (Required Bandwidth) value in kbps for CPS calculation.  
